@@ -116,48 +116,47 @@ for (let i = 1; i <= 6; i++) chips.insertAdjacentHTML("beforeend", `<span class=
 const home = $("imgHome");
 
 window.render = t => {
-  $("pat").style.transform = `translate(${t * 6}px,${t * 10}px)`;
-  $("glow").style.transform = `scale(${1 + .08 * Math.sin(t * .8)})`;
+  $("pat").style.transform = `translate(${t * 5}px,${t * 8}px)`;
+  $("glow").style.transform = `scale(${1 + .08 * Math.sin(t * .7)})`;
 
-  // ١: 0 → 5.2
-  const a1 = vis(t, 0, 5.2, .7);
-  $("s1").style.opacity = a1;
+  // ١: 0 → 5.6  (الصوت 1.0 → 4.4)
+  $("s1").style.opacity = vis(t, 0, 5.6, .7);
   ["r1", "r2", "c1"].forEach((id, i) => { const p = ease(seg(t, .2 + i * .35, 1.6 + i * .35)); $(id).style.strokeDasharray = "1"; $(id).style.strokeDashoffset = 1 - p; });
   $("dot").style.opacity = seg(t, 1.6, 2);
   $("emb").style.transform = `scale(${.85 + .15 * out(seg(t, 0, 2.4))}) rotate(${-30 + 30 * out(seg(t, 0, 2.6))}deg)`;
-  const tt = out(seg(t, 2.2, 3.2)); $("s1t").style.opacity = tt; $("s1t").style.transform = `translateY(${40 * (1 - tt)}px)`;
+  const tt = out(seg(t, 1.0, 2.0)); $("s1t").style.opacity = tt; $("s1t").style.transform = `translateY(${40 * (1 - tt)}px)`;
 
-  // ٢: 5 → 11
-  $("s2").style.opacity = vis(t, 5, 11, .6);
-  const c = ease(seg(t, 5.4, 7.4));
+  // ٢: 5.4 → 16.6  (الصوت 6.0 → 15.6)
+  $("s2").style.opacity = vis(t, 5.4, 16.6, .6);
+  const c = ease(seg(t, 6.0, 9.0));
   $("n1").textContent = ar(Math.round(436 * c)); $("n2").textContent = ar(Math.round(134 * c));
-  const q = out(seg(t, 7.8, 8.8)); $("s2q").style.opacity = q; $("s2q").style.transform = `translateY(${40 * (1 - q)}px)`;
+  const q = out(seg(t, 10.8, 11.8)); $("s2q").style.opacity = q; $("s2q").style.transform = `translateY(${40 * (1 - q)}px)`;
 
-  // ٣: 10.8 → 20.5  الجوال يصعد ثم يتصفح
-  const up = out(seg(t, 10.8, 12.2)), down = ease(seg(t, 19.6, 20.6));
+  // ٣: 16.4 → 27.6  (الصوت 17.0 → 26.2)
+  const up = out(seg(t, 16.4, 17.8)), down = ease(seg(t, 26.6, 27.6));
   $("phone").style.opacity = Math.min(up, 1 - down);
   $("phone").style.transform = `translateY(${(1 - up) * 500 + down * 200}px) scale(${.92 + .08 * up})`;
-  $("cap3").style.opacity = Math.min(out(seg(t, 11.4, 12.4)), 1 - down);
+  $("cap3").style.opacity = Math.min(out(seg(t, 17.0, 18.0)), 1 - down);
   const H = 640 - 44, scrollMax = home.naturalHeight * (H / home.naturalWidth) - 1296;
-  const s = ease(seg(t, 13, 17.2));
+  const s = ease(seg(t, 19.0, 23.4));
   home.style.transform = `translateY(${-Math.min(scrollMax, 2600) * s}px)`;
-  const sw = ease(seg(t, 17.4, 18.2));
+  const sw = ease(seg(t, 23.8, 24.6));
   home.style.opacity = 1 - sw; $("imgSeries").style.opacity = sw;
 
-  // ٤: 20.4 → 26
-  $("s4").style.opacity = vis(t, 20.4, 26, .6);
+  // ٤: 27.4 → 35.6  (الصوت 28.2 → 34.9)
+  $("s4").style.opacity = vis(t, 27.4, 35.6, .6);
   for (let i = 1; i <= 6; i++) {
-    const p = out(seg(t, 21.2 + i * .22, 21.6 + i * .22)), el = $("ch" + i);
+    const p = out(seg(t, 28.2 + i * .22, 28.6 + i * .22)), el = $("ch" + i);
     el.style.opacity = p; el.style.transform = `translateY(${30 * (1 - p)}px)`;
-    el.classList.toggle("on", t > 22.9 + (i - 1) * .45 && t < 22.9 + i * .45 + (i === 6 ? 9 : 0));
+    el.classList.toggle("on", t > 30.4 + (i - 1) * .7 && t < 30.4 + i * .7 + (i === 6 ? 9 : 0));
   }
-  $("prog").style.width = 100 * ease(seg(t, 22.9, 25.6)) + "%";
+  $("prog").style.width = 100 * ease(seg(t, 30.4, 34.6)) + "%";
 
-  // ٥: 25.8 → 30
-  const e = out(seg(t, 25.8, 27));
+  // ٥: 35.6 → 45  (الصوت 36.2 → 43.9)
+  const e = out(seg(t, 35.6, 36.8));
   $("s5").style.opacity = e; $("s5").style.transform = `scale(${.94 + .06 * e})`;
-  $("line").style.width = 360 * ease(seg(t, 26.6, 27.6)) + "px";
-  const k = out(seg(t, 27.2, 28)); $("cta").style.opacity = k; $("cta").style.transform = `translateY(${30 * (1 - k)}px) scale(${1 + .03 * Math.sin(Math.max(0, t - 28) * 4)})`;
+  $("line").style.width = 360 * ease(seg(t, 37, 38)) + "px";
+  const k = out(seg(t, 41.4, 42.2)); $("cta").style.opacity = k; $("cta").style.transform = `translateY(${30 * (1 - k)}px) scale(${1 + .03 * Math.sin(Math.max(0, t - 42.2) * 4)})`;
 };
 window.render(0);
 </script>
