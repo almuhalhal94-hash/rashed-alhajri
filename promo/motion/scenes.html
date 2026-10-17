@@ -66,6 +66,7 @@
     <div id="o_c" style="margin-top:64px;font:700 64px Amiri;color:#e6cd93">امسح الرمز… وثبّت التطبيق</div>
     <div class="cta" id="o_cta" style="margin-top:34px">ثبّتها على جوالك الآن</div>
   </div>
+  <div id="credit" style="position:absolute;left:0;right:0;bottom:120px;text-align:center;font-size:30px;color:#e6cd93;opacity:0;letter-spacing:.3px">© جميع الحقوق محفوظة · إعداد: طلال سعود المهلهل</div>
   <div class="flash" id="flash"></div>
 </div>
 <script>
@@ -115,6 +116,7 @@ window.render = (t, part) => {
     const br = 1 + .03 * Math.sin(Math.max(0, t - 3.6) * 3.2); $("brk").style.transform = `scale(${br})`; $("brk").style.opacity = .55 + .45 * (0.5 + 0.5 * Math.cos(Math.max(0, t - 3.6) * 3.2));
     const sc = seg(t, 3.2, 4.6); $("scan").style.top = (-120 + 720 * io(sc)) + "px"; $("scan").style.opacity = sc > 0 && sc < 1 ? 1 : 0;
     const Cc = out(seg(t, 3.4, 4.0)); $("o_c").style.opacity = Cc; $("o_c").style.transform = `translateY(${30 * (1 - Cc)}px)`;
+    $("credit").style.opacity = .8 * out(seg(t, 4.6, 5.3));
     const K = back(seg(t, 3.8, 4.4)); $("o_cta").style.opacity = seg(t, 3.8, 4.1); $("o_cta").style.transform = `scale(${(.6 + .4 * K) * (1 + .025 * Math.sin(Math.max(0, t - 4.4) * 4))})`;
   }
 };

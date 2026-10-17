@@ -47,7 +47,7 @@
   const seriesCard = s => { const f = listOf(s.k)[0]; return `<a class="series-card fade" href="#/series/${s.k}" style="background-image:url('${thumb(f.id, "hqdefault")}')">
       <span class="count">${n(s.count)} مقطع</span><h3>${esc(s.name)}</h3><p>${esc(s.desc)}</p></a>`; };
   const footer = `<footer class="site"><svg class="emblem" viewBox="0 0 64 64"><use href="#star"/></svg>
-      جميع المقاطع من <a href="${D.channel}" target="_blank" rel="noopener" style="color:var(--gold)">القناة الرسمية للشيخ د. راشد بن محمد بن فطيس الهاجري</a><br>«الدال على الخير كفاعله»</footer>`;
+      جميع المقاطع من <a href="${D.channel}" target="_blank" rel="noopener" style="color:var(--gold)">القناة الرسمية للشيخ د. راشد بن محمد بن فطيس الهاجري</a><br>«الدال على الخير كفاعله»<br><span style="display:inline-block;margin-top:10px;font-size:12.5px;opacity:.85">© جميع الحقوق محفوظة · إعداد: طلال سعود المهلهل</span></footer>`;
   const ICON = {
     play: '<svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="currentColor" stroke="none"/></svg>',
     heart: '<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.3C1.2 8.4 3.3 5 6.8 5c2 0 3.5 1.1 5.2 3 1.7-1.9 3.2-3 5.2-3 3.5 0 5.6 3.4 4.3 6.7C19.5 16.4 12 21 12 21z"/></svg>',
