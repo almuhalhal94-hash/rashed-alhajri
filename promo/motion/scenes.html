@@ -49,13 +49,22 @@
     <div class="kin" id="kin"></div>
   </div>
 
-  <div class="layer" id="outro">
-    <img class="icon" id="icon" src="../../assets/icons/icon-512.png" alt="">
-    <div class="sm" id="o_a" style="margin-top:60px">دروس ومواعظ</div>
-    <div style="font:700 150px/1.25 Amiri" id="o_b">د. راشد الهاجري</div>
-    <div class="line" id="o_line"></div>
-    <div class="sm" id="o_c">436 مقطعاً · 14 سلسلة · مجاناً</div>
-    <div class="cta" id="o_cta">ثبّتها على جوالك الآن</div>
+  <div class="layer" id="outro" style="justify-content:flex-start;padding-top:250px">
+    <div class="sm" id="o_a">دروس ومواعظ</div>
+    <div style="font:700 136px/1.25 Amiri" id="o_b">د. راشد الهاجري</div>
+    <div class="line" id="o_line" style="margin:26px auto 60px"></div>
+    <div id="qwrap" style="position:relative;width:600px;height:600px;perspective:1600px">
+      <div id="qcard" style="position:absolute;inset:0;border-radius:44px;background:#fffcf6;padding:34px;box-shadow:0 0 0 6px #d7bb7d,0 0 90px 10px rgba(215,187,125,.35),0 40px 80px -30px rgba(0,0,0,.7);overflow:hidden">
+        <img src="../qr.svg" style="width:100%;height:100%;display:block" alt="">
+        <div id="scan" style="position:absolute;left:0;right:0;height:120px;top:-120px;background:linear-gradient(180deg,transparent,rgba(215,187,125,.55) 85%,#d7bb7d 100%);mix-blend-mode:multiply"></div>
+      </div>
+      <svg id="brk" viewBox="0 0 680 680" style="position:absolute;left:-40px;top:-40px;width:680px;height:680px;overflow:visible">
+        <g fill="none" stroke="#e6cd93" stroke-width="7" stroke-linecap="round">
+          <path pathLength="1" d="M10 110V40Q10 10 40 10H110"/><path pathLength="1" d="M570 10H640Q670 10 670 40V110"/>
+          <path pathLength="1" d="M670 570V640Q670 670 640 670H570"/><path pathLength="1" d="M110 670H40Q10 670 10 640V570"/></g></svg>
+    </div>
+    <div id="o_c" style="margin-top:64px;font:700 64px Amiri;color:#e6cd93">امسح الرمز… وثبّت التطبيق</div>
+    <div class="cta" id="o_cta" style="margin-top:34px">ثبّتها على جوالك الآن</div>
   </div>
   <div class="flash" id="flash"></div>
 </div>
@@ -97,12 +106,16 @@ window.render = (t, part) => {
     $("flash").style.opacity = .9 * Math.max(0, 1 - Math.abs(t - 7.45) / .25);
   } else {
     $("flash").style.opacity = .9 * Math.max(0, 1 - t / .3);
-    const ic = back(seg(t, .1, .8)); $("icon").style.transform = `scale(${ic}) rotate(${-12 * (1 - out(seg(t, .1, .9)))}deg)`; $("icon").style.opacity = seg(t, .1, .4);
-    const A = out(seg(t, .4, 1.0)); $("o_a").style.opacity = .85 * A; $("o_a").style.transform = `translateY(${30 * (1 - A)}px)`;
-    const B = out(seg(t, 1.0, 1.7)); $("o_b").style.opacity = B; $("o_b").style.transform = `translateY(${40 * (1 - B)}px)`; $("o_b").style.filter = `blur(${8 * (1 - B)}px)`;
-    $("o_line").style.width = 520 * io(seg(t, 1.6, 2.4)) + "px";
-    $("o_c").style.opacity = .85 * out(seg(t, 2.1, 2.7));
-    const K = back(seg(t, 3.3, 3.9)); $("o_cta").style.opacity = seg(t, 3.3, 3.6); $("o_cta").style.transform = `scale(${(.6 + .4 * K) * (1 + .025 * Math.sin(Math.max(0, t - 4) * 4))})`;
+    const A = out(seg(t, .3, .9)); $("o_a").style.opacity = .85 * A; $("o_a").style.transform = `translateY(${30 * (1 - A)}px)`;
+    const B = out(seg(t, .6, 1.4)); $("o_b").style.opacity = B; $("o_b").style.transform = `translateY(${40 * (1 - B)}px)`; $("o_b").style.filter = `blur(${8 * (1 - B)}px)`;
+    $("o_line").style.width = 520 * io(seg(t, 1.3, 2.1)) + "px";
+    const Q = seg(t, 1.9, 3.0), q = back(Q);
+    $("qcard").style.opacity = C(Q * 3); $("qcard").style.transform = `rotateX(${(1 - out(Q)) * 75}deg) rotateZ(${(1 - out(Q)) * -8}deg) scale(${.6 + .4 * q})`;
+    $("brk").querySelectorAll("path").forEach((pth, i) => { const p = io(seg(t, 2.7 + i * .12, 3.3 + i * .12)); pth.style.strokeDasharray = 1; pth.style.strokeDashoffset = 1 - p; });
+    const br = 1 + .03 * Math.sin(Math.max(0, t - 3.6) * 3.2); $("brk").style.transform = `scale(${br})`; $("brk").style.opacity = .55 + .45 * (0.5 + 0.5 * Math.cos(Math.max(0, t - 3.6) * 3.2));
+    const sc = seg(t, 3.2, 4.6); $("scan").style.top = (-120 + 720 * io(sc)) + "px"; $("scan").style.opacity = sc > 0 && sc < 1 ? 1 : 0;
+    const Cc = out(seg(t, 3.4, 4.0)); $("o_c").style.opacity = Cc; $("o_c").style.transform = `translateY(${30 * (1 - Cc)}px)`;
+    const K = back(seg(t, 3.8, 4.4)); $("o_cta").style.opacity = seg(t, 3.8, 4.1); $("o_cta").style.transform = `scale(${(.6 + .4 * K) * (1 + .025 * Math.sin(Math.max(0, t - 4.4) * 4))})`;
   }
 };
 window.render(0, "intro");
