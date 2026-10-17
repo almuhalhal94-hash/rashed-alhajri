@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../assets/fonts.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#082219}
+  #st{position:relative;width:1080px;height:1920px;overflow:hidden;color:#f7f0df;font-family:"Readex Pro";
+    background:radial-gradient(90% 60% at 50% 46%,#1d6a4e 0%,#0e3b2c 45%,#082219 100%)}
+  .pat{position:absolute;inset:-300px;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23e6cd93' stroke-width='.8'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='11'/%3E%3Cpath d='M0 0l24 24M88 0 64 24M0 88l24-24M88 88 64 64'/%3E%3C/g%3E%3C/svg%3E");background-size:150px}
+  .layer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .verse{font:700 96px/1.75 Amiri;color:#e6cd93;padding:0 70px;text-shadow:0 0 40px rgba(215,187,125,.25)}
+  .verse .w{display:inline-block;opacity:0}
+  .ref{margin-top:24px;font-size:32px;opacity:.6;letter-spacing:1px}
+  .orn{width:520px;height:40px;margin:30px auto 0}
+  .orn path,.orn circle{fill:none;stroke:#d7bb7d;stroke-width:1.6}
+  .emb{width:240px;height:240px;color:#d7bb7d}
+  .emb rect,.emb circle.o{fill:none;stroke:currentColor;stroke-width:2.2}
+  .kin{font:700 120px/1.35 Amiri;margin-top:60px}
+  .kin .w{display:inline-block;opacity:0}
+  .gold{color:#e6cd93}
+  .sm{font-size:40px;font-weight:300;opacity:.85}
+  .cta{margin-top:70px;font-size:48px;font-weight:500;background:linear-gradient(180deg,#e6cd93,#c9a45c);color:#1a1408;padding:28px 70px;border-radius:999px;box-shadow:0 20px 60px -20px rgba(215,187,125,.6)}
+  .icon{width:190px;height:190px;border-radius:46px;box-shadow:0 30px 70px -20px rgba(0,0,0,.6)}
+  .line{height:2px;background:linear-gradient(90deg,transparent,#d7bb7d,transparent);margin:40px auto;width:0}
+  .flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(230,205,147,.55),transparent 60%);opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="st">
+  <div class="pat" id="pat"></div>
+
+  <div class="layer" id="intro">
+    <div id="vbox">
+      <div class="verse" id="verse"></div>
+      <svg class="orn" viewBox="0 0 520 40"><path id="o1" pathLength="1" d="M10 20H200M320 20H510"/><circle id="o2" pathLength="1" cx="260" cy="20" r="14"/><path id="o3" pathLength="1" d="M246 20h28M260 6v28"/></svg>
+      <div class="ref" id="ref">سورة الذاريات · 55</div>
+    </div>
+  </div>
+
+  <div class="layer" id="intro2">
+    <svg class="emb" id="emb" viewBox="0 0 64 64">
+      <rect x="14" y="14" width="36" height="36" rx="2" id="r1" pathLength="1"/>
+      <rect x="14" y="14" width="36" height="36" rx="2" transform="rotate(45 32 32)" id="r2" pathLength="1"/>
+      <circle class="o" cx="32" cy="32" r="9.5" id="c1" pathLength="1"/>
+      <circle cx="32" cy="32" r="3.2" fill="currentColor" id="dot"/>
+    </svg>
+    <div class="kin" id="kin"></div>
+  </div>
+
+  <div class="layer" id="outro">
+    <img class="icon" id="icon" src="../../assets/icons/icon-512.png" alt="">
+    <div class="sm" id="o_a" style="margin-top:60px">دروس ومواعظ</div>
+    <div style="font:700 150px/1.25 Amiri" id="o_b">د. راشد الهاجري</div>
+    <div class="line" id="o_line"></div>
+    <div class="sm" id="o_c">436 مقطعاً · 14 سلسلة · مجاناً</div>
+    <div class="cta" id="o_cta">ثبّتها على جوالك الآن</div>
+  </div>
+  <div class="flash" id="flash"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const C = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const seg = (t, a, b) => C((t - a) / (b - a));
+const io = x => { x = C(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const out = x => 1 - Math.pow(1 - C(x), 3);
+const back = x => { x = C(x); const c = 1.5; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const words = (el, txt) => { el.innerHTML = txt.split(" ").map(w => `<span class="w">${w}</span>`).join(" "); return [...el.children]; };
+$("verse").innerHTML = '<span class="w">﴿وَذَكِّرْ</span> <span class="w">فَإِنَّ</span> <span class="w">الذِّكْرَى</span><br><span class="w">تَنفَعُ</span> <span class="w">الْمُؤْمِنِينَ﴾</span>';
+const VW = [...$("verse").querySelectorAll(".w")];
+$("kin").innerHTML = '<span class="w">دروسُ</span> <span class="w">علمٍ</span><br><span class="w gold">ومجالسُ</span> <span class="w gold">ذِكر</span>';
+const KW = [...$("kin").querySelectorAll(".w")];
+const draw = (id, p) => { $(id).style.strokeDasharray = 1; $(id).style.strokeDashoffset = 1 - p; };
+
+// part = "intro" (0 → 7.6) أو "outro" (0 → 7.2)
+window.render = (t, part) => {
+  $("pat").style.transform = `translate(${t * 6}px,${t * 9}px) rotate(${t * .4}deg)`;
+  const I = part === "intro";
+  $("intro").style.display = $("intro2").style.display = I ? "flex" : "none";
+  $("outro").style.display = I ? "none" : "flex";
+  if (I) {
+    // الآية: تظهر كلمة كلمة ثم تصعد وتختفي
+    VW.forEach((w, i) => { const p = out(seg(t, .3 + i * .28, .9 + i * .28)); w.style.opacity = p; w.style.transform = `translateY(${30 * (1 - p)}px)`; w.style.filter = `blur(${6 * (1 - p)}px)`; });
+    draw("o1", io(seg(t, 1.3, 2.2))); draw("o2", io(seg(t, 1.5, 2.3))); draw("o3", io(seg(t, 2, 2.5)));
+    $("ref").style.opacity = .6 * out(seg(t, 1.9, 2.5));
+    const vo = io(seg(t, 3.0, 3.6)); $("vbox").style.opacity = 1 - vo; $("vbox").style.transform = `translateY(${-120 * vo}px) scale(${1 - .06 * vo})`;
+    $("intro").style.opacity = t < 3.7 ? 1 : 0;
+    // الشعار يرتسم + "دروس علم ومجالس ذكر" مع الصوت (3.2 →)
+    const on = t >= 3.1; $("intro2").style.opacity = on ? 1 - io(seg(t, 7.1, 7.6)) : 0;
+    ["r1", "r2", "c1"].forEach((id, i) => draw(id, io(seg(t, 3.1 + i * .25, 4.1 + i * .25))));
+    $("dot").style.opacity = seg(t, 4.0, 4.3);
+    $("emb").style.transform = `rotate(${-45 + 45 * out(seg(t, 3.1, 4.4))}deg) scale(${.7 + .3 * back(seg(t, 3.1, 4.0))})`;
+    const kt = [3.3, 3.75, 4.55, 5.1];
+    KW.forEach((w, i) => { const p = out(seg(t, kt[i], kt[i] + .5)); w.style.opacity = p; w.style.transform = `translateY(${50 * (1 - p)}px) scale(${.9 + .1 * back(seg(t, kt[i], kt[i] + .5))})`; w.style.filter = `blur(${8 * (1 - p)}px)`; });
+    $("intro2").style.transform = `scale(${1 + .25 * io(seg(t, 7.0, 7.6))})`;
+    $("flash").style.opacity = .9 * Math.max(0, 1 - Math.abs(t - 7.45) / .25);
+  } else {
+    $("flash").style.opacity = .9 * Math.max(0, 1 - t / .3);
+    const ic = back(seg(t, .1, .8)); $("icon").style.transform = `scale(${ic}) rotate(${-12 * (1 - out(seg(t, .1, .9)))}deg)`; $("icon").style.opacity = seg(t, .1, .4);
+    const A = out(seg(t, .4, 1.0)); $("o_a").style.opacity = .85 * A; $("o_a").style.transform = `translateY(${30 * (1 - A)}px)`;
+    const B = out(seg(t, 1.0, 1.7)); $("o_b").style.opacity = B; $("o_b").style.transform = `translateY(${40 * (1 - B)}px)`; $("o_b").style.filter = `blur(${8 * (1 - B)}px)`;
+    $("o_line").style.width = 520 * io(seg(t, 1.6, 2.4)) + "px";
+    $("o_c").style.opacity = .85 * out(seg(t, 2.1, 2.7));
+    const K = back(seg(t, 3.3, 3.9)); $("o_cta").style.opacity = seg(t, 3.3, 3.6); $("o_cta").style.transform = `scale(${(.6 + .4 * K) * (1 + .025 * Math.sin(Math.max(0, t - 4) * 4))})`;
+  }
+};
+window.render(0, "intro");
+</script>
+</body>
+</html>
