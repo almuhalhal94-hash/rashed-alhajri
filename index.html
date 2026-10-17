@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الشيخ د. راشد الهاجري | مواعظ وعِبَر</title>
+<meta name="description" content="مكتبة مرئية تجمع دروس ومحاضرات ووقفات ومواعظ فضيلة الشيخ د. راشد بن محمد بن فطيس الهاجري، مقسّمة إلى أجزاء قصيرة.">
+<meta name="theme-color" content="#0e3b2c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="راشد الهاجري">
+<meta property="og:title" content="الشيخ د. راشد الهاجري | مواعظ وعِبَر">
+<meta property="og:description" content="دروس ومحاضرات ووقفات ومواعظ، مقسّمة إلى أجزاء قصيرة">
+<meta property="og:image" content="assets/icons/icon-512.png">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#/">
+    <svg class="emblem" viewBox="0 0 64 64" aria-hidden="true"><use href="#star"/></svg>
+    <span class="brand-text"><b>راشد الهاجري</b><small>مواعظ وعِبَر</small></span>
+  </a>
+  <form class="search" id="searchForm" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="ابحث في الدروس والمواعظ…" autocomplete="off" aria-label="بحث">
+  </form>
+  <button class="icon-btn" id="themeBtn" aria-label="تبديل الوضع الليلي">
+    <svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<main id="view" tabindex="-1"></main>
+
+<nav class="tabbar" aria-label="التنقل">
+  <a href="#/" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>الرئيسية</a>
+  <a href="#/series" data-tab="series"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>السلاسل</a>
+  <a href="#/search" data-tab="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>بحث</a>
+  <a href="#/fav" data-tab="fav"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.3C1.2 8.4 3.3 5 6.8 5c2 0 3.5 1.1 5.2 3 1.7-1.9 3.2-3 5.2-3 3.5 0 5.6 3.4 4.3 6.7C19.5 16.4 12 21 12 21z"/></svg>المحفوظات</a>
+</nav>
+
+<div class="install-bar" id="installBar" hidden>
+  <svg class="emblem" viewBox="0 0 64 64" aria-hidden="true"><use href="#star"/></svg>
+  <div><b>ثبّت التطبيق على جوالك</b><small>افتحه بلمسة واحدة من الشاشة الرئيسية</small></div>
+  <button class="btn gold" id="installBtn">تثبيت</button>
+  <button class="icon-btn" id="installClose" aria-label="إغلاق"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="star" viewBox="0 0 64 64">
+    <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round">
+      <rect x="14" y="14" width="36" height="36" rx="2"/>
+      <rect x="14" y="14" width="36" height="36" rx="2" transform="rotate(45 32 32)"/>
+      <circle cx="32" cy="32" r="9.5"/>
+    </g>
+    <circle cx="32" cy="32" r="3.2" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

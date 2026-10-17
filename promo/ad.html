@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>
+  :root{--green:#0e3b2c;--deep:#082219;--gold:#d7bb7d;--gold2:#b08a43;--ivory:#f7f0df}
+  *{box-sizing:border-box;margin:0}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:var(--deep)}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:"Readex Pro";color:var(--ivory);
+    background:radial-gradient(120% 80% at 50% 30%,#14503b 0%,var(--green) 40%,var(--deep) 100%)}
+  .pattern{position:absolute;inset:-200px;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='132' height='132' viewBox='0 0 88 88'%3E%3Cg fill='none' stroke='%23e6cd93' stroke-width='1'%3E%3Crect x='24' y='24' width='40' height='40'/%3E%3Crect x='24' y='24' width='40' height='40' transform='rotate(45 44 44)'/%3E%3Ccircle cx='44' cy='44' r='11'/%3E%3Cpath d='M0 0l24 24M88 0 64 24M0 88l24-24M88 88 64 64'/%3E%3C/g%3E%3C/svg%3E");background-size:132px}
+  .glow{position:absolute;width:1200px;height:1200px;left:-60px;top:260px;border-radius:50%;background:radial-gradient(circle,rgba(215,187,125,.32),transparent 60%)}
+  .layer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px}
+  .emblem{width:300px;height:300px;color:var(--gold)}
+  .emblem rect,.emblem circle.o{fill:none;stroke:currentColor;stroke-width:2.2}
+  .serif{font-family:Amiri;font-weight:700}
+  .big{font-size:118px;line-height:1.3}
+  .mid{font-size:76px;line-height:1.4}
+  .small{font-size:40px;font-weight:300;opacity:.86;line-height:1.6}
+  .gold{color:var(--gold)}
+  .kicker{font-size:34px;color:var(--gold);letter-spacing:1px;display:flex;align-items:center;gap:18px}
+  .kicker::before,.kicker::after{content:"";width:60px;height:2px;background:currentColor}
+  .stats{display:flex;gap:70px;margin-top:40px}
+  .stats b{display:block;font:700 130px/1.1 Amiri;color:var(--gold)}
+  .stats span{font-size:36px;opacity:.8}
+  .phone{position:absolute;left:50%;width:640px;height:1340px;margin-left:-320px;border-radius:86px;background:#0b0f0d;padding:22px;box-shadow:0 60px 120px -30px rgba(0,0,0,.7),0 0 0 3px rgba(215,187,125,.35)}
+  .screen{position:relative;width:100%;height:100%;border-radius:66px;overflow:hidden;background:#f5efe3}
+  .screen img{position:absolute;top:0;left:0;width:100%}
+  .notch{position:absolute;top:16px;left:50%;width:190px;height:52px;margin-left:-95px;border-radius:30px;background:#0b0f0d;z-index:3}
+  .caption{position:absolute;left:0;right:0;text-align:center;padding:0 70px}
+  .chips{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-top:46px;max-width:880px}
+  .chip{font-size:42px;padding:14px 36px;border-radius:999px;border:2px solid rgba(215,187,125,.5);color:var(--ivory)}
+  .chip.on{background:var(--gold);color:#1a1408;border-color:var(--gold)}
+  .bar{width:820px;height:16px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:40px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold))}
+  .cta{margin-top:56px;font-size:46px;font-weight:500;background:var(--gold);color:#1a1408;padding:26px 64px;border-radius:999px}
+  .url{margin-top:30px;font-size:34px;opacity:.75;direction:ltr}
+  .line{width:0;height:2px;background:var(--gold);margin:34px auto}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="pattern" id="pat"></div>
+  <div class="glow" id="glow"></div>
+
+  <!-- ١: الافتتاح -->
+  <div class="layer" id="s1">
+    <svg class="emblem" id="emb" viewBox="0 0 64 64">
+      <rect x="14" y="14" width="36" height="36" rx="2" id="r1" pathLength="1"/>
+      <rect x="14" y="14" width="36" height="36" rx="2" transform="rotate(45 32 32)" id="r2" pathLength="1"/>
+      <circle class="o" cx="32" cy="32" r="9.5" id="c1" pathLength="1"/>
+      <circle cx="32" cy="32" r="3.2" fill="currentColor" id="dot"/>
+    </svg>
+    <div class="serif mid" id="s1t" style="margin-top:70px">سنواتٌ أفناها<br><span class="gold">في خدمة الإسلام والمسلمين</span></div>
+  </div>
+
+  <!-- ٢: الأرقام -->
+  <div class="layer" id="s2">
+    <div class="kicker">مواعظ · دروس · وقفات · خطب</div>
+    <div class="stats">
+      <div><b id="n1">٠</b><span>مقطعاً</span></div>
+      <div><b id="n2">٠</b><span>ساعة من العلم</span></div>
+    </div>
+    <div class="serif mid" id="s2q" style="margin-top:80px">متفرقةٌ هنا وهناك…<br><span class="gold">فكيف تصل إليها؟</span></div>
+  </div>
+
+  <!-- ٣: الجوال -->
+  <div class="caption" id="cap3" style="top:120px">
+    <div class="kicker" style="justify-content:center">جديد</div>
+    <div class="serif mid" style="margin-top:14px">كلُّها في مكانٍ واحد</div>
+  </div>
+  <div class="phone" id="phone" style="top:470px">
+    <div class="notch"></div>
+    <div class="screen">
+      <img id="imgHome" src="shots/home.png" alt="">
+      <img id="imgSeries" src="shots/series.png" alt="" style="opacity:0">
+    </div>
+  </div>
+
+  <!-- ٤: التجزئة -->
+  <div class="layer" id="s4">
+    <div class="kicker">المحاضرة طويلة؟</div>
+    <div class="serif big" style="margin-top:20px">قسّمناها لك<br><span class="gold">أجزاءً قصيرة</span></div>
+    <div class="chips" id="chips"></div>
+    <div class="bar"><i id="prog" style="width:0"></i></div>
+    <div class="small" style="margin-top:34px">كل جزء دقائق معدودة… تسمعه في طريقك</div>
+  </div>
+
+  <!-- ٥: الخاتمة -->
+  <div class="layer" id="s5">
+    <svg class="emblem" viewBox="0 0 64 64" style="width:230px;height:230px">
+      <rect x="14" y="14" width="36" height="36" rx="2"/><rect x="14" y="14" width="36" height="36" rx="2" transform="rotate(45 32 32)"/>
+      <circle class="o" cx="32" cy="32" r="9.5"/><circle cx="32" cy="32" r="3.2" fill="currentColor"/>
+    </svg>
+    <div class="small" style="margin-top:46px">فضيلة الشيخ الدكتور</div>
+    <div class="serif big" style="font-size:132px">راشد الهاجري</div>
+    <div class="serif mid gold" style="margin-top:-6px">مواعظ وعِبَر</div>
+    <div class="line" id="line"></div>
+    <div class="small">٤٣٦ مقطعاً · ١٤ سلسلة · أجزاء قصيرة · مجاناً</div>
+    <div class="cta" id="cta">ثبّته على جوالك الآن</div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const ar = x => String(x).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const out = x => 1 - Math.pow(1 - clamp(x), 3);
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+// ظهور واختفاء طبقة بين a و b مع انتقال مدته f
+const vis = (t, a, b, f = .6) => Math.min(seg(t, a, a + f), 1 - seg(t, b - f, b));
+const chips = $("chips");
+for (let i = 1; i <= 6; i++) chips.insertAdjacentHTML("beforeend", `<span class="chip" id="ch${i}">الجزء ${ar(i)}</span>`);
+const home = $("imgHome");
+
+window.render = t => {
+  $("pat").style.transform = `translate(${t * 6}px,${t * 10}px)`;
+  $("glow").style.transform = `scale(${1 + .08 * Math.sin(t * .8)})`;
+
+  // ١: 0 → 5.2
+  const a1 = vis(t, 0, 5.2, .7);
+  $("s1").style.opacity = a1;
+  ["r1", "r2", "c1"].forEach((id, i) => { const p = ease(seg(t, .2 + i * .35, 1.6 + i * .35)); $(id).style.strokeDasharray = "1"; $(id).style.strokeDashoffset = 1 - p; });
+  $("dot").style.opacity = seg(t, 1.6, 2);
+  $("emb").style.transform = `scale(${.85 + .15 * out(seg(t, 0, 2.4))}) rotate(${-30 + 30 * out(seg(t, 0, 2.6))}deg)`;
+  const tt = out(seg(t, 2.2, 3.2)); $("s1t").style.opacity = tt; $("s1t").style.transform = `translateY(${40 * (1 - tt)}px)`;
+
+  // ٢: 5 → 11
+  $("s2").style.opacity = vis(t, 5, 11, .6);
+  const c = ease(seg(t, 5.4, 7.4));
+  $("n1").textContent = ar(Math.round(436 * c)); $("n2").textContent = ar(Math.round(134 * c));
+  const q = out(seg(t, 7.8, 8.8)); $("s2q").style.opacity = q; $("s2q").style.transform = `translateY(${40 * (1 - q)}px)`;
+
+  // ٣: 10.8 → 20.5  الجوال يصعد ثم يتصفح
+  const up = out(seg(t, 10.8, 12.2)), down = ease(seg(t, 19.6, 20.6));
+  $("phone").style.opacity = Math.min(up, 1 - down);
+  $("phone").style.transform = `translateY(${(1 - up) * 500 + down * 200}px) scale(${.92 + .08 * up})`;
+  $("cap3").style.opacity = Math.min(out(seg(t, 11.4, 12.4)), 1 - down);
+  const H = 640 - 44, scrollMax = home.naturalHeight * (H / home.naturalWidth) - 1296;
+  const s = ease(seg(t, 13, 17.2));
+  home.style.transform = `translateY(${-Math.min(scrollMax, 2600) * s}px)`;
+  const sw = ease(seg(t, 17.4, 18.2));
+  home.style.opacity = 1 - sw; $("imgSeries").style.opacity = sw;
+
+  // ٤: 20.4 → 26
+  $("s4").style.opacity = vis(t, 20.4, 26, .6);
+  for (let i = 1; i <= 6; i++) {
+    const p = out(seg(t, 21.2 + i * .22, 21.6 + i * .22)), el = $("ch" + i);
+    el.style.opacity = p; el.style.transform = `translateY(${30 * (1 - p)}px)`;
+    el.classList.toggle("on", t > 22.9 + (i - 1) * .45 && t < 22.9 + i * .45 + (i === 6 ? 9 : 0));
+  }
+  $("prog").style.width = 100 * ease(seg(t, 22.9, 25.6)) + "%";
+
+  // ٥: 25.8 → 30
+  const e = out(seg(t, 25.8, 27));
+  $("s5").style.opacity = e; $("s5").style.transform = `scale(${.94 + .06 * e})`;
+  $("line").style.width = 360 * ease(seg(t, 26.6, 27.6)) + "px";
+  const k = out(seg(t, 27.2, 28)); $("cta").style.opacity = k; $("cta").style.transform = `translateY(${30 * (1 - k)}px) scale(${1 + .03 * Math.sin(Math.max(0, t - 28) * 4)})`;
+};
+window.render(0);
+</script>
+</body>
+</html>
