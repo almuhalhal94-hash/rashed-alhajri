@@ -4,3 +4,5 @@ promo/motion/d3_*.jpg
 promo/motion/vo/*.mp3
 promo/motion/myvoice/raw.*
 promo/motion/myvoice/chk.*
+deliver/
+*.zip
